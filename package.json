@@ -1,0 +1,24 @@
+{
+  "name": "otg-scraper",
+  "version": "1.0.0",
+  "description": "Off the Grid Scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhoffmann/otg-scraper.git"
+  },
+  "author": "Daniel Hoffmann",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dhoffmann/otg-scraper/issues"
+  },
+  "homepage": "https://github.com/dhoffmann/otg-scraper#readme",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "express": "^4.13.3",
+    "request": "^2.67.0"
+  }
+}
