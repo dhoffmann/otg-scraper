@@ -35,6 +35,33 @@ app.get('/otg/events', function(req, res) {
   });
 });
 
+app.get('/otg/market/:id', function(req, res) {
+	var url = 'http://offthegridsf.com/wp-admin/admin-ajax.php?action=otg_market&delta=0&market=' + req.params.id;
+	request(url, function(error, response, html){
+		if (!error) {
+			var $ = cheerio.load(html);
+			var market = {};
+			market.name = $('.otg-market-data-name').text();
+			market.addr = $('.otg-market-data-address a').text();
+			market.events = [];
+			$('.otg-market-data-vendors').each(function(i, el){
+				var $this = $(this);
+				var date = $this.prev().text();
+				var vendors = [];
+				$this.find('.otg-markets-data-vendor-name').each(function(index, elem){
+					var name = $(this).text().replace(/.\(.*?\)/g, '');
+					vendors[index] = name;
+				});
+				market.events[i] = {
+					date: date,
+					vendors: vendors
+				}
+			});
+			res.json(market);
+		}
+	});
+});
+
 app.listen('3000');
 
 exports = module.exports = app;
