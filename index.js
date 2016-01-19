@@ -31,7 +31,9 @@ app.get('/otg/events', function(req, res) {
 				});
 			});
 			return res.json({events});
-    }
+    } else {
+			res.send(404);
+		}
   });
 });
 
@@ -58,6 +60,8 @@ app.get('/otg/market/:id', function(req, res) {
 				}
 			});
 			res.json(market);
+		} else {
+			res.send(404);
 		}
 	});
 });
